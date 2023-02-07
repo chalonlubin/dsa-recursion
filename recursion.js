@@ -10,15 +10,22 @@ function product(nums, idx = 0) {
   // base case - when idx is === nums.length
   if (idx === nums.length) return 0;
 
-  debugger
+  debugger;
   return nums[idx] + product(nums, ++idx);
 }
 
 /** longest: return the length of the longest word in an array of words. */
+// chalon, chris, bob
+function longest(words, idx=0) {
+  // base case
+  if (idx === words.length) return 0;
 
-function longest(words) {
-
+  debugger;
+  let curLen = words[idx].length;
+  return Math.max(curLen, longest(words, idx + 1))
 }
+
+
 
 /** everyOther: return a string with every other letter. */
 
