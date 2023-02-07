@@ -17,10 +17,9 @@ function product(nums, idx = 0) {
 
 /** longest: return the length of the longest word in an array of words. */
 // chalon, chris, bob
-function longest(words, idx=0) {
+function longest(words, idx = 0) {
   // base case
   if (idx === words.length) return 0;
-
 }
 
 /** everyOther: return a string with every other letter. */
@@ -56,9 +55,9 @@ function find(arr, val, idx = 0) {
 // tacocat
 // noon
 
-function isPalindrome(str, start = 0, last = str.length -1) {
-  let starLetter = str[start]
-  let lastLetter = str[last]
+function isPalindrome(str, start = 0, last = str.length - 1) {
+  let starLetter = str[start];
+  let lastLetter = str[last];
   // base case1
   if (starLetter !== lastLetter) return false;
   // base case2
@@ -74,23 +73,61 @@ function isPalindrome(str, start = 0, last = str.length -1) {
 /** revString: return a copy of a string, but in reverse. */
 // unwind
 function revString(str, idx = str.length - 1) {
-
   if (idx < 0) return "";
 
   let letter = str[idx];
 
-  return letter + revString(str, idx - 1)
-
+  return letter + revString(str, idx - 1);
 }
-revString("chalon")
+revString("chalon");
 
 /** findIndex: return the index of val in arr (or -1 if val is not present). */
+// ["cat", "car", "dog"], val: "dog"
+function findIndex(arr, val, idx = 0) {
+  // base case - fail
+  if (idx >= arr.length) return -1;
+  // base case - pass
+  if (arr[idx] === val) return idx;
 
-function findIndex(arr, val) {}
+  return findIndex(arr, val, ++idx);
+}
+
+//TODO: Ask about ++v vs v++ and v+1;
 
 /** gatherStrings: given an object, return an array of all of the string values. */
+// obj = { a: { b: "abc", c: "d", m: 5, d: { e: "start" } } };
 
-function gatherStrings(obj) {}
+let nestedObj = {
+  firstName: "Lester",
+  favoriteNumber: 22,
+  moreData: {
+    lastName: "Testowitz"
+  },
+  funFacts: {
+    moreStuff: {
+      anotherNumber: 100,
+      deeplyNestedString: {
+        almostThere: {
+          success: "you made it!"
+        }
+      }
+    },
+    favoriteString: "nice!"
+  }
+};
+
+
+function gatherStrings(obj, res = []) {
+  // base case
+  for (let item in obj) {
+    let curVal = obj[item]
+    if (typeof curVal === "object") gatherStrings(curVal, res);
+    if (typeof curVal === 'string') res.push(curVal);
+  }
+  return res;
+}
+
+console.log("🚀 ~ file: recursion.js:110 ~ gatherStrings(obj)", gatherStrings(nestedObj))
 
 // FURTHER STUDY
 
