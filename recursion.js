@@ -10,23 +10,46 @@ function product(nums, idx = 0) {
   // base case - when idx is === nums.length
   if (idx === nums.length) return 0;
 
-  debugger
+  debugger;
   return nums[idx] + product(nums, ++idx);
 }
 
 /** longest: return the length of the longest word in an array of words. */
 
-function longest(words) {
+function longest(words, idx = 0) {
+  // base case
+  if (idx === words.length) return 0;
 
+  debugger;
+  let curLen = words[idx].length;
+  return Math.max(curLen, longest(words, idx + 1));
 }
 
 /** everyOther: return a string with every other letter. */
 
-function everyOther(str) {}
+// "hello"
+function everyOther(str, idx = 0) {
+  // base case:
+  // idx >  str.length return "";
+  if (idx >= str.length) return "";
+
+  // progress: traverse across the str
+  // increment idx by 2
+  // continue saving the value to add to the call
+  // return that evaluated value
+  return str[idx] + everyOther(str, idx + 2);
+}
 
 /** find: return boolean depending on if val exists in array or not. */
 
-function find(arr, val) {}
+// ["a","b"] undefined
+// val = "c"
+function find(arr, val, idx = 0) {
+  // base cases -
+  if (val === arr[idx]) return true;
+  if (idx > arr.length) return false;
+  return find(arr, val, ++idx);
+}
 
 /** isPalindrome: checks whether a string is a palindrome or not. */
 
