@@ -101,45 +101,67 @@ let nestedObj = {
   firstName: "Lester",
   favoriteNumber: 22,
   moreData: {
-    lastName: "Testowitz"
+    lastName: "Testowitz",
   },
   funFacts: {
     moreStuff: {
       anotherNumber: 100,
       deeplyNestedString: {
         almostThere: {
-          success: "you made it!"
-        }
-      }
+          success: "you made it!",
+        },
+      },
     },
-    favoriteString: "nice!"
-  }
+    favoriteString: "nice!",
+  },
 };
-
 
 function gatherStrings(obj, res = []) {
   // base case
   for (let item in obj) {
-    let curVal = obj[item]
+    let curVal = obj[item];
     if (typeof curVal === "object") gatherStrings(curVal, res);
-    if (typeof curVal === 'string') res.push(curVal);
+    if (typeof curVal === "string") res.push(curVal);
   }
   return res;
 }
 
-console.log("🚀 ~ file: recursion.js:110 ~ gatherStrings(obj)", gatherStrings(nestedObj))
+console.log(
+  "🚀 ~ file: recursion.js:110 ~ gatherStrings(obj)",
+  gatherStrings(nestedObj)
+);
 
 // FURTHER STUDY
 
 /** binarySearch: given a sorted array of numbers, and a value,
  * return true if val is in array, false if not present). */
 
-function binarySearch(arr, val) {}
+function binarySearch(arr, val) {
+  if (arr.length === 1) return false;
+  let middleIndex = Math.floor(arr.length / 2); // grabs middle index
+  let middleVal = arr[middleIndex]; // grabs middle value
+  // basecase 1
+  if (val === middleVal) return true; // if middle value === value, return true
+
+  // basecase2
+  let higher = arr.slice(middleIndex); // grabs higher portion
+  let lower = arr.slice(0, middleIndex); // grabs lower portion
+  if (val > middleVal) return binarySearch(higher, val); // checks higher, and enters again recursively
+  if (val < middleVal) return binarySearch(lower, val); // checks lower, and enters again recursively
+
+  // if (arr === []) return false;
+
+}
+binarySearch([1,2,3,4,5,6,7,8,9,10], 10)
+console.log("🚀 ~ file: recursion.js:156 ~ binarySearch([1,2,3,4,5,6,7,8,9,10], 10)", binarySearch([1,2,3,4,5,6,7,8,9,10], 10))
+
 
 /** binarySearch: given a sorted array of numbers, and a value,
  * return the index of that value (or -1 if val is not present). */
 
-function binarySearchIndex(arr, val) {}
+function binarySearchIndex(arr, val) {
+
+}
 
 // you might find the above two problems easier if you change the function signature to:
 //
